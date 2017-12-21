@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Terekhin Sergey</Authors>
+    <Company></Company>
+    <Owners></Owners>
+    <Description>Wrapper for libjpeg-turbo library</Description>
+    <AssemblyVersion>1.5.3.1</AssemblyVersion>
+    <FileVersion>1.5.3.1</FileVersion>
+    <Version>1.5.3</Version>
+    <PackageIconUrl>https://a.fsdn.com/allura/p/libjpeg-turbo/icon?1478149362</PackageIconUrl>
+    <Product>Libjpeg-Turbo wrapper for .Net. libjpeg-turbo library for concrete operation system is in separate NugetPackages. Look for libjpeg-turbo-native-[OS] package</Product>
+    <PackageTags>TurboJpeg libjpeg-turbo</PackageTags>
+    <LicenseUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net/blob/master/LICENSE</LicenseUrl>
+    <Copyright>Copyright © 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net</PackageProjectUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="x86\turbojpeg.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackagePath>build\x86\</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="x64\turbojpeg.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackagePath>build\x64\</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="TurboJpegWrapper.targets">
+      <PackagePath>build\</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+</Project>
