@@ -92,7 +92,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibJpegWrapper\libjpeg-turbo-net.csproj">
+    <ProjectReference Include="..\libjpeg-turbo-native-win\libjpeg-turbo-native-win.csproj">
+      <Project>{2764d577-1c5d-477e-a4ff-e6aa697d6a83}</Project>
+      <Name>libjpeg-turbo-native-win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libjpeg-turbo-net\libjpeg-turbo-net.csproj">
       <Project>{e9d3144d-a269-4db7-84b5-8f1097c90600}</Project>
       <Name>libjpeg-turbo-net</Name>
     </ProjectReference>

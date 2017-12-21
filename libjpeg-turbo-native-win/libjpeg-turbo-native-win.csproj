@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Terekhin Sergey</Authors>
+    <Company></Company>
+    <Owners></Owners>
+    <Description>Native libjpeg-turbo libraries for Windows</Description>
+    <AssemblyVersion>1.5.2.0</AssemblyVersion>
+    <FileVersion>1.5.2.0</FileVersion>
+    <Version>1.5.2</Version>
+    <PackageIconUrl>https://a.fsdn.com/allura/p/libjpeg-turbo/icon?1478149362</PackageIconUrl>
+    <Product>Native libjpeg-turbo libraries for Windows</Product>
+    <PackageTags>TurboJpeg libjpeg-turbo</PackageTags>
+    <LicenseUrl>https://github.com/libjpeg-turbo/libjpeg-turbo/blob/master/LICENSE.md</LicenseUrl>
+    <Copyright>Copyright © 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="win-x64\turbojpeg.dll" />
+    <None Remove="win-x86\turbojpeg.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="win-x64\turbojpeg.dll">
+      <PackagePath>build\x64\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="win-x86\turbojpeg.dll">
+      <PackagePath>build\x86\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

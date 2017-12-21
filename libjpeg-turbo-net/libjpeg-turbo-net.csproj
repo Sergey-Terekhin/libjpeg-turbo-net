@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Terekhin Sergey</Authors>
+    <Company></Company>
+    <Owners></Owners>
+    <Description>Wrapper for libjpeg-turbo library</Description>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <FileVersion>2.0.1.0</FileVersion>
+    <Version>2.0.1</Version>
+    <PackageIconUrl>https://a.fsdn.com/allura/p/libjpeg-turbo/icon?1478149362</PackageIconUrl>
+    <Product>Libjpeg-Turbo wrapper for .Net</Product>
+    <PackageTags>TurboJpeg libjpeg-turbo</PackageTags>
+    <LicenseUrl>https://opensource.org/licenses/MIT</LicenseUrl>
+    <Copyright>Copyright © Autonomic Systems</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://bitbucket.org/autonomicsystems/as.turbojpegwrapper</PackageProjectUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+</Project>

@@ -1,4 +1,5 @@
-﻿using System.Drawing.Imaging;
+﻿using System;
+using System.Drawing.Imaging;
 using System.IO;
 using NUnit.Framework;
 
@@ -13,6 +14,7 @@ namespace TurboJpegWrapper.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
+            NativeModulesLoader.LoadLibraries("turbojpeg.dll", Console.WriteLine);
             _decompressor = new TJDecompressor();
             if (Directory.Exists(OutDirectory))
             {
@@ -25,6 +27,7 @@ namespace TurboJpegWrapper.Tests
         public void Clean()
         {
             _decompressor.Dispose();
+            NativeModulesLoader.FreeUnmanagedModules("turbojpeg.dll");
         }
 
         [Test, Combinatorial]
@@ -38,11 +41,8 @@ namespace TurboJpegWrapper.Tests
             {
                 Assert.DoesNotThrow(() =>
                 {
-                    var result = _decompressor.Decompress(data.Item2, format, TJFlags.NONE);
+                    var result = _decompressor.Decompress(data.Item2, TestUtils.ConvertPixelFormat(format), TJFlags.NONE);
                     Assert.NotNull(result);
-
-                    var file = Path.Combine(OutDirectory, $"{Path.GetFileNameWithoutExtension(data.Item1)}_{format}.bmp");
-                    result.Save(file);
                 });
             }
         }
@@ -59,7 +59,7 @@ namespace TurboJpegWrapper.Tests
                 var dataPtr = TJUtils.CopyDataToPointer(data.Item2);
                 Assert.DoesNotThrow(() =>
                 {
-                    var result = _decompressor.Decompress(dataPtr, (ulong)data.Item2.Length, format, TJFlags.NONE);
+                    var result = _decompressor.Decompress(dataPtr, (ulong)data.Item2.Length, TestUtils.ConvertPixelFormat(format), TJFlags.NONE);
                     Assert.NotNull(result);
                 });
                 TJUtils.FreePtr(dataPtr);

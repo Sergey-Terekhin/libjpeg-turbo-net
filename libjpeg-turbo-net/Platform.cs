@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+[assembly:InternalsVisibleTo("TurboJpegWrapper.Tests")]
 
 namespace TurboJpegWrapper
 {

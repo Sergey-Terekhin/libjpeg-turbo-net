@@ -31,7 +31,7 @@ var nuget_temp_Dir = buildDir + Directory("nuget_temp");
 var nugetFeedDir = buildDir + Directory("nuget");    
 //directory where assemblies will be published with all required dependencies
 var publishDir = buildDir + Directory("assemblies"); 
-var solution = "./LibJpegWrapper.sln";
+var solution = "./libjpeg-turbo-net.sln";
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
@@ -83,7 +83,8 @@ Task("Pack")
             Configuration = configuration,
             OutputDirectory = nuget_temp_Dir,
         };
-        PackProjects("./LibJpegWrapper/", settings);
+        PackProjects("./libjpeg-turbo-net/", settings);
+        PackProjects("./libjpeg-turbo-native-win/", settings);
 
         Information("Initializing NuGet Local Feed at {0}", nugetFeedDir);
         NuGetInit(nuget_temp_Dir, nugetFeedDir);
@@ -94,7 +95,8 @@ Task("Pack")
 Task("Publish")
     .IsDependentOn("Build")
     .Does(()=>{
-        PublishProjects("./LibJpegWrapper/", configuration, publishDir);
+        PublishProjects("./libjpeg-turbo-net/", configuration, publishDir);
+        PublishProjects("./libjpeg-turbo-native-win/", configuration, publishDir);
     });
 	
 //////////////////////////////////////////////////////////////////////

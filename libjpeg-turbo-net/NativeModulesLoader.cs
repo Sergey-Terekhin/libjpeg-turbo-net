@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace TurboJpegWrapper
 {/// <summary>
@@ -76,7 +73,7 @@ namespace TurboJpegWrapper
         /// <summary>
         /// Releases specified unmanaged modules
         /// </summary>
-        public static void FreeUnmanagedModules(string[] unmanagedModules)
+        public static void FreeUnmanagedModules(params string[] unmanagedModules)
         {
             foreach (var name in unmanagedModules)
             {
@@ -110,7 +107,7 @@ namespace TurboJpegWrapper
 
 
 #if NET47
-            var asm = System.Reflection.Assembly.GetEntryAssembly();
+            var asm = System.Reflection.Assembly.GetExecutingAssembly();
             if (string.IsNullOrEmpty(asm?.Location))
             {
                 //it is possible to run from tests environment - do not know that to do 

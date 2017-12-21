@@ -44,7 +44,7 @@ namespace TurboJpegWrapper.PerformanceTests
         private static void JpegTurboCompression()
         {
             var sw = new Stopwatch();
-            var sourceImage = (Bitmap)Image.FromFile(@"D:\Desktop\images\abdullin-1.jpg");
+            var sourceImage = (Bitmap)Image.FromFile(@"E:\TestData\photo\520.jpg");
             var pixelFormat = sourceImage.PixelFormat;
             var width = sourceImage.Width;
             var height = sourceImage.Height;
@@ -108,7 +108,7 @@ namespace TurboJpegWrapper.PerformanceTests
         private static void SystemDrawingCompression()
         {
             var sw = new Stopwatch();
-            var sourceImage = (Bitmap)Image.FromFile(@"D:\Desktop\images\abdullin-1.jpg");
+            var sourceImage = (Bitmap)Image.FromFile(@"E:\TestData\photo\520.jpg");
             var width = sourceImage.Width;
             var height = sourceImage.Height;
             long average = 0;
