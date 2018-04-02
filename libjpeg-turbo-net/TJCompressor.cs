@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
+// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
 
 namespace TurboJpegWrapper
 {
@@ -8,6 +10,7 @@ namespace TurboJpegWrapper
     /// <summary>
     /// Implements compression of RGB, CMYK, grayscale images to the jpeg format
     /// </summary>
+    // ReSharper disable once InheritdocConsiderUsage
     public class TJCompressor : IDisposable
     {
         private readonly IntPtr _compressorHandle;
@@ -214,12 +217,11 @@ namespace TurboJpegWrapper
         /// </list>
         /// </exception>
         /// <returns>
-        /// An instance of <seealso cref="BufferWrapper"/> containing pointer to memory with compressed data.
         /// </returns>
         /// <remarks>
         /// Consumer of this method should manually release memory containing in result.
         /// </remarks>
-        public void CompressToBufferWrapper(IntPtr srcPtr, int stride, int width, int height,
+        public void Compress(IntPtr srcPtr, int stride, int width, int height,
             TJPixelFormats tjPixelFormat, TJSubsamplingOptions subSamp, int quality, TJFlags flags,
             Action<(IntPtr data, int size)> onCompressionCompleted)
         {

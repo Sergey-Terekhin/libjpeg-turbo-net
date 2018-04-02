@@ -1,5 +1,6 @@
 ﻿using System;
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
 
 namespace TurboJpegWrapper
 {
@@ -33,7 +34,7 @@ namespace TurboJpegWrapper
         /// </summary>
         /// <param name="jpegBuf">Pointer to a buffer containing the JPEG image to decompress. This buffer is not modified</param>
         /// <param name="jpegBufSize">Size of the JPEG image (in bytes)</param>
-        /// <param name="destPixelFormat">Pixel format of the destination image (see <see cref="PixelFormat"/> "Pixel formats".)</param>
+        /// <param name="destPixelFormat">Pixel format of the destination image</param>
         /// <param name="flags">The bitwise OR of one or more of the <see cref="TJFlags"/> "flags"</param>
         /// <param name="width">Width of image in pixels</param>
         /// <param name="height">Height of image in pixels</param>
@@ -46,10 +47,8 @@ namespace TurboJpegWrapper
             if (_isDisposed)
                 throw new ObjectDisposedException("this");
 
-            int subsampl;
-            int colorspace;
             var funcResult = TurboJpegImport.tjDecompressHeader(_decompressorHandle, jpegBuf, jpegBufSize,
-                out width, out height, out subsampl, out colorspace);
+                out width, out height, out _, out _);
 
             if (funcResult == -1)
             {
@@ -86,7 +85,7 @@ namespace TurboJpegWrapper
         /// Decompress a JPEG image to an RGB, grayscale, or CMYK image.
         /// </summary>
         /// <param name="jpegBuf">A buffer containing the JPEG image to decompress. This buffer is not modified</param>
-        /// <param name="destPixelFormat">Pixel format of the destination image (see <see cref="PixelFormat"/> "Pixel formats".)</param>
+        /// <param name="destPixelFormat">Pixel format of the destination image</param>
         /// <param name="flags">The bitwise OR of one or more of the <see cref="TJFlags"/> "flags"</param>
         /// <param name="width">Width of image in pixels</param>
         /// <param name="height">Height of image in pixels</param>
@@ -117,15 +116,12 @@ namespace TurboJpegWrapper
         /// <exception cref="TJException">Throws if underlying decompress function failed</exception>
         /// <exception cref="ObjectDisposedException">Object is disposed and can not be used anymore</exception>
         /// <exception cref="NotSupportedException">Convertion to the requested pixel format can not be performed</exception>
-        public unsafe DecompressedImage Decompress(IntPtr jpegBuf, ulong jpegBufSize, TJPixelFormats destPixelFormat, TJFlags flags)
+        public DecompressedImage Decompress(IntPtr jpegBuf, ulong jpegBufSize, TJPixelFormats destPixelFormat, TJFlags flags)
         {
             if (_isDisposed)
                 throw new ObjectDisposedException("this");
 
-            int width;
-            int height;
-            int stride;
-            var buffer = Decompress(jpegBuf, jpegBufSize, destPixelFormat, flags, out width, out height, out stride);
+            var buffer = Decompress(jpegBuf, jpegBufSize, destPixelFormat, flags, out var width, out var height, out var stride);
 
             return new DecompressedImage(width, height, stride, buffer, destPixelFormat);
         }

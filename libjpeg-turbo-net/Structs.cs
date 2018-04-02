@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 namespace TurboJpegWrapper
 {
-    struct tjSize
+    internal struct tjSize
     {
         public tjSize(int width, int height) : this()
         {
-            this.Width = width;
-            this.Height = height;
+            Width = width;
+            Height = height;
         }
 
         public int Width { get; set; }
@@ -19,7 +23,7 @@ namespace TurboJpegWrapper
     /// Scaling factor
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    struct tjscalingfactor
+    internal struct tjscalingfactor
     {
         /// <summary>
         /// Numerator
@@ -37,7 +41,7 @@ namespace TurboJpegWrapper
     /// Lossless transform
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public  struct tjtransform
+    public struct tjtransform
     {
         /// <summary>
         /// Cropping region

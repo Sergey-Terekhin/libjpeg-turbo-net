@@ -38,6 +38,7 @@ namespace TurboJpegWrapper
         /// <exception cref="ArgumentNullException"><paramref name="transforms"/> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentException">Transforms can not be empty</exception>
         /// <exception cref="TJException"> Throws if low level turbo jpeg function fails </exception>
+        // ReSharper disable once MemberCanBePrivate.Global
         public byte[][] Transform(IntPtr jpegBuf, ulong jpegBufSize, TJTransformDescription[] transforms, TJFlags flags)
         {
             if (transforms == null)
@@ -51,25 +52,18 @@ namespace TurboJpegWrapper
             var destSizes = new ulong[count];
 
 
-            int subsampl;
-            int colorspace;
-            int width;
-            int height;
             var funcResult = TurboJpegImport.tjDecompressHeader(_transformHandle, jpegBuf, jpegBufSize,
-                out width, out height, out subsampl, out colorspace);
+                out var width, out var height, out var subsampl, out _);
 
             if (funcResult == -1)
             {
                 TJUtils.GetErrorAndThrow();
             }
 
-            tjSize mcuSize;
-            if (!TurboJpegImport.MCUSizes.TryGetValue((TJSubsamplingOptions)subsampl, out mcuSize))
+            if (!TurboJpegImport.MCUSizes.TryGetValue((TJSubsamplingOptions)subsampl, out var mcuSize))
             {
                 throw new TJException("Unable to read Subsampling Options from jpeg header");
             }
-
-
 
             var tjTransforms = new tjtransform[count];
             for (var i = 0; i < count; i++)

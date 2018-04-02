@@ -14,7 +14,7 @@ namespace TurboJpegWrapper.Tests
     {
         private TJCompressor _compressor;
 
-        private string OutDirectory { get { return Path.Combine(TestUtils.BinPath, "compress_images_out"); } }
+        private string OutDirectory => Path.Combine(TestUtils.BinPath, "compress_images_out");
 
         [TestFixtureSetUp]
         public void SetUp()

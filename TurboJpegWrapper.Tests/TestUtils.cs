@@ -10,11 +10,17 @@ namespace TurboJpegWrapper.Tests
 {
     static class TestUtils
     {
+        private static string GetImagesDir()
+        {
+            //var imagesDir = Path.Combine(BinPath, "images");
+            var imagesDir = "images";
+
+            return imagesDir;
+
+        }
         public static IEnumerable<Bitmap> GetTestImages(string searchPattern)
         {
-            var path = Assembly.GetExecutingAssembly().Location;
-            var imagesDir = Path.Combine(Path.GetDirectoryName(path), "images");
-
+            var imagesDir = GetImagesDir();
             foreach (var file in Directory.EnumerateFiles(imagesDir, searchPattern))
             {
                 Bitmap bmp;
@@ -37,8 +43,7 @@ namespace TurboJpegWrapper.Tests
 
         public static IEnumerable<Tuple<string, byte[]>> GetTestImagesData(string searchPattern)
         {
-            var imagesDir = Path.Combine(BinPath, "images");
-
+            var imagesDir = GetImagesDir();
             foreach (var file in Directory.EnumerateFiles(imagesDir, searchPattern))
             {
                 Debug.WriteLine($"Input file is {file}");

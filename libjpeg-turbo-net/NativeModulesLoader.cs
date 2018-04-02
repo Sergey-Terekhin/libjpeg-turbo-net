@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
 
 namespace TurboJpegWrapper
 {/// <summary>
@@ -55,9 +56,8 @@ namespace TurboJpegWrapper
         {
             while (!LoadedLibraries.IsEmpty)
             {
-                IntPtr ptr;
                 var first = LoadedLibraries.First().Key;
-                if (!LoadedLibraries.TryRemove(first, out ptr))
+                if (!LoadedLibraries.TryRemove(first, out var ptr))
                     continue;
 
                 if (Platform.OperationSystem != OS.Windows)
@@ -77,8 +77,7 @@ namespace TurboJpegWrapper
         {
             foreach (var name in unmanagedModules)
             {
-                IntPtr ptr;
-                if (!LoadedLibraries.TryGetValue(name, out ptr))
+                if (!LoadedLibraries.TryGetValue(name, out var ptr))
                     continue;
 
                 if (Platform.OperationSystem != OS.Windows)
@@ -173,7 +172,7 @@ namespace TurboJpegWrapper
 
                 var libraryPtr = LoadLibrary(fullPath, logger);
 
-                var fileExistAndLoaded = fileExist && !IntPtr.Zero.Equals(libraryPtr);
+                var fileExistAndLoaded = fileExist && IntPtr.Zero != libraryPtr;
                 if (fileExist && !fileExistAndLoaded)
                     logger?.Invoke($"File {fullPath} cannot be loaded.");
                 else
@@ -188,6 +187,7 @@ namespace TurboJpegWrapper
         }
 
 
+        // ReSharper disable once InconsistentNaming
         private static string GetOSSubfolder(OS operationSystem)
         {
             switch (operationSystem)

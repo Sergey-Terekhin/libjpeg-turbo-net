@@ -8,7 +8,7 @@ namespace TurboJpegWrapper
 {
     static class TurboJpegImport
     {
-        public const string LibraryName = "turbojpeg.dll";
+        public const string LibraryName = "turbojpeg";
 
         /// <summary>
         /// Pixel size (in bytes) for a given pixel format.

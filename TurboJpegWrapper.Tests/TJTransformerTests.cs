@@ -9,7 +9,7 @@ namespace TurboJpegWrapper.Tests
     public class TJTransformerTests
     {
         private TJTransformer _transformer;
-        private string OutDirectory { get { return Path.Combine(TestUtils.BinPath, "transform_images_out"); } }
+        private string OutDirectory => Path.Combine(TestUtils.BinPath, "transform_images_out");
 
         [TestFixtureSetUp]
         public void SetUp()

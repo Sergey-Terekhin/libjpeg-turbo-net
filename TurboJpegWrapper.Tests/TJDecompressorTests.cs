@@ -6,10 +6,11 @@ using NUnit.Framework;
 namespace TurboJpegWrapper.Tests
 {
     [TestFixture]
-    class TJDecompressorTests
+    // ReSharper disable once InconsistentNaming
+    internal class TJDecompressorTests
     {
         private TJDecompressor _decompressor;
-        private string OutDirectory { get { return Path.Combine(TestUtils.BinPath, "decompress_images_out"); } }
+        private string OutDirectory => Path.Combine(TestUtils.BinPath, "decompress_images_out");
 
         [TestFixtureSetUp]
         public void SetUp()

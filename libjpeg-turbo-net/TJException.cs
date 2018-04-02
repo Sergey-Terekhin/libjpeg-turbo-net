@@ -12,7 +12,7 @@ namespace TurboJpegWrapper
         /// Creates new instance of <see cref="TJException"/>
         /// </summary>
         /// <param name="error">Error message from underlying turbo jpeg library</param>
-        public TJException(string error) : base(error)
+        internal TJException(string error) : base(error)
         {
         }
     }
