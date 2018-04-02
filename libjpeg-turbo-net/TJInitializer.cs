@@ -34,7 +34,27 @@ namespace TurboJpegWrapper
 
                 var current = NativeModulesLoader.NativePath;
                 NativeModulesLoader.SetNativePath(dllPath);
-                NativeModulesLoader.LoadLibraries(TurboJpegImport.LibraryName, logger);
+
+                string libraryName;
+                switch (Platform.OperationSystem)
+                {
+                    case OS.Windows:
+                    case OS.WindowsPhone:
+                        libraryName = TurboJpegImport.LibraryName + ".dll";
+                        break;
+                    case OS.Linux:
+                    case OS.Android:
+                        libraryName = "lib"+TurboJpegImport.LibraryName + ".so";
+                        break;
+                    case OS.MacOS:
+                    case OS.IOS:
+                        libraryName = "lib"+TurboJpegImport.LibraryName + ".dylib";
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                NativeModulesLoader.LoadLibraries(libraryName, logger);
                 NativeModulesLoader.SetNativePath(current);
                 _isInitialized = true;
             }

@@ -104,18 +104,7 @@ namespace TurboJpegWrapper
                 return LoadUnmanagedModules(NativePath, unmanagedModules, logger);
             }
 
-
-#if NET47
-            var asm = System.Reflection.Assembly.GetExecutingAssembly();
-            if (string.IsNullOrEmpty(asm?.Location))
-            {
-                //it is possible to run from tests environment - do not know that to do 
-                return false;
-            }
-            var location = Path.GetDirectoryName(asm.Location);
-#elif NETSTANDARD2_0
             var location = AppContext.BaseDirectory;
-#endif
 
             if (!Directory.Exists(location))
                 return false;
