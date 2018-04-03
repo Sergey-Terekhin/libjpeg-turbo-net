@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using NUnit.Framework;
 
 namespace TurboJpegWrapper.Tests
@@ -15,7 +17,7 @@ namespace TurboJpegWrapper.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            NativeModulesLoader.LoadLibraries("turbojpeg.dll", Console.WriteLine);
+            TJInitializer.Initialize(logger: Console.WriteLine);
             _decompressor = new TJDecompressor();
             if (Directory.Exists(OutDirectory))
             {
@@ -28,7 +30,6 @@ namespace TurboJpegWrapper.Tests
         public void Clean()
         {
             _decompressor.Dispose();
-            NativeModulesLoader.FreeUnmanagedModules("turbojpeg.dll");
         }
 
         [Test, Combinatorial]
@@ -62,6 +63,40 @@ namespace TurboJpegWrapper.Tests
                 {
                     var result = _decompressor.Decompress(dataPtr, (ulong)data.Item2.Length, TestUtils.ConvertPixelFormat(format), TJFlags.NONE);
                     Assert.NotNull(result);
+                });
+                TJUtils.FreePtr(dataPtr);
+            }
+        }
+
+        [Test, Combinatorial]
+        public unsafe void DecompressIntPtrToIntPtr(
+            [Values(
+                PixelFormat.Format32bppArgb,
+                PixelFormat.Format24bppRgb,
+                PixelFormat.Format8bppIndexed)]PixelFormat format)
+        {
+            foreach (var data in TestUtils.GetTestImagesData("*.jpg"))
+            {
+                var dataPtr = TJUtils.CopyDataToPointer(data.Item2);
+                
+                Assert.DoesNotThrow(() =>
+                {
+                    _decompressor.GetImageInfo(dataPtr, (ulong)data.Item2.Length, TestUtils.ConvertPixelFormat(format), out var width, out var height, out var stride, out var decompressedBufferSize);
+
+                    var decompressed = new byte[decompressedBufferSize];
+                    fixed (byte* ptr = decompressed)
+                    {
+                        _decompressor.Decompress(
+                            dataPtr, 
+                            (ulong) data.Item2.Length,
+                            (IntPtr)ptr, 
+                            decompressedBufferSize,
+                            TestUtils.ConvertPixelFormat(format), 
+                            TJFlags.NONE);
+                    }
+
+                    Assert.IsTrue(decompressed.Any(b => b != 0));
+
                 });
                 TJUtils.FreePtr(dataPtr);
             }

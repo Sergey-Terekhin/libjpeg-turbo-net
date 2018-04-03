@@ -14,7 +14,7 @@ namespace TurboJpegWrapper.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            NativeModulesLoader.LoadLibraries("turbojpeg.dll", Console.WriteLine);
+            TJInitializer.Initialize(logger: Console.WriteLine);
             _transformer = new TJTransformer();
             if (Directory.Exists(OutDirectory))
             {
@@ -27,7 +27,6 @@ namespace TurboJpegWrapper.Tests
         public void Clean()
         {
             _transformer.Dispose();
-            NativeModulesLoader.FreeUnmanagedModules("turbojpeg.dll");
         }
 
         [Test]

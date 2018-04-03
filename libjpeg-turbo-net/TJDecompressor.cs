@@ -13,7 +13,7 @@ namespace TurboJpegWrapper
         private readonly IntPtr _decompressorHandle;
         private bool _isDisposed;
         private readonly object _lock = new object();
-        
+
         /// <summary>
         /// Creates new instance of <see cref="TJDecompressor"/>
         /// </summary>
@@ -27,6 +27,36 @@ namespace TurboJpegWrapper
             {
                 TJUtils.GetErrorAndThrow();
             }
+        }
+
+        /// <summary>
+        /// Returns info about jpeg image without decompressing it
+        /// </summary>
+        /// <param name="jpegBuf">Pointer to a buffer containing the JPEG image to decompress. This buffer is not modified</param>
+        /// <param name="jpegBufSize">Size of the JPEG image (in bytes)</param>
+        /// <param name="destPixelFormat">Pixel format of the destination image</param>
+        /// <param name="width">Width of image in pixels</param>
+        /// <param name="height">Height of image in pixels</param>
+        /// <param name="stride">Bytes per line in the destination image</param>
+        /// <param name="decompressedBufferSize">Size in bytes for buffer where decompressed image will be put</param>
+        /// <exception cref="TJException">Throws if underlying decompress function failed</exception>
+        /// <exception cref="ObjectDisposedException">Object is disposed and can not be used anymore</exception>
+        /// <returns></returns>
+        public void GetImageInfo(IntPtr jpegBuf, ulong jpegBufSize, TJPixelFormats destPixelFormat, out int width, out int height, out int stride, out int decompressedBufferSize)
+        {
+            if (_isDisposed)
+                throw new ObjectDisposedException("this");
+
+            var funcResult = TurboJpegImport.tjDecompressHeader(_decompressorHandle, jpegBuf, jpegBufSize,
+                out width, out height, out _, out _);
+            
+            if (funcResult == -1)
+            {
+                TJUtils.GetErrorAndThrow();
+            }
+
+            stride = TurboJpegImport.TJPAD(width * TurboJpegImport.PixelSizes[destPixelFormat]);
+            decompressedBufferSize = stride * height;
         }
 
         /// <summary>
@@ -145,6 +175,44 @@ namespace TurboJpegWrapper
             fixed (byte* jpegPtr = jpegBuf)
             {
                 return Decompress((IntPtr)jpegPtr, jpegBufSize, destPixelFormat, flags);
+            }
+        }
+
+        /// <summary>
+        /// Decompress a JPEG image to an RGB, grayscale, or CMYK image into precreated unmanaged buffer
+        /// </summary>
+        /// <param name="jpegBuf">Pointer to a buffer containing the JPEG image to decompress. This buffer is not modified</param>
+        /// <param name="jpegBufSize">Size of the JPEG image (in bytes)</param>
+        /// <param name="outBuf">Pointer to output buffer where decompressed image will be put. Buffer must be created before call</param>
+        /// <param name="outBufSize">Size of output buffer (in bytes). It must be greater or equal than size of decompressed image</param>
+        /// <param name="destPixelFormat">Pixel format of the destination image (see <see cref="TJPixelFormats"/> "Pixel formats".)</param>
+        /// <param name="flags">The bitwise OR of one or more of the <see cref="TJFlags"/> "flags"</param>
+        /// <exception cref="TJException">Throws if underlying decompress function failed</exception>
+        /// <exception cref="ObjectDisposedException">Object is disposed and can not be used anymore</exception>
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
+        public void Decompress(IntPtr jpegBuf, ulong jpegBufSize, IntPtr outBuf, int outBufSize, TJPixelFormats destPixelFormat, TJFlags flags)
+        {
+            GetImageInfo(jpegBuf, jpegBufSize, destPixelFormat, out var width, out var height, out var stride, out var bufSize);
+
+            if (outBufSize < bufSize)
+            {
+                throw new ArgumentOutOfRangeException("outBufSize");
+            }
+
+            var funcResult = TurboJpegImport.tjDecompress(
+                _decompressorHandle,
+                jpegBuf,
+                jpegBufSize,
+                outBuf,
+                width,
+                stride,
+                height,
+                (int)destPixelFormat,
+                (int)flags);
+
+            if (funcResult == -1)
+            {
+                TJUtils.GetErrorAndThrow();
             }
         }
 

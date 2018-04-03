@@ -19,9 +19,9 @@ namespace TurboJpegWrapper.Tests
         [TestFixtureSetUp]
         public void SetUp()
         {
-            NativeModulesLoader.LoadLibraries("turbojpeg.dll", Console.WriteLine);
+            TJInitializer.Initialize(logger: Console.WriteLine);
 
-               _compressor = new TJCompressor();
+            _compressor = new TJCompressor();
             if (Directory.Exists(OutDirectory))
             {
                 Directory.Delete(OutDirectory, true);
@@ -33,7 +33,6 @@ namespace TurboJpegWrapper.Tests
         public void Clean()
         {
             _compressor.Dispose();
-            NativeModulesLoader.FreeUnmanagedModules("turbojpeg.dll");
         }
         
         [Test, Combinatorial]
