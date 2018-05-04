@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>libjpeg-turbo-native-win</id>
+    <version>1.5.2</version>
+    <authors>Terekhin Sergey</authors>
+    <owners>Terekhin Sergey</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net</projectUrl>
+    <iconUrl>https://a.fsdn.com/allura/p/libjpeg-turbo/icon?1478149362</iconUrl>
+    <description>Native libjpeg-turbo libraries for Windows</description>
+    <copyright>Copyright © 2018</copyright>
+    <tags>TurboJpeg libjpeg-turbo native</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\libjpeg-turbo-native-win.dll" target="lib\netstandard2.0\libjpeg-turbo-native-win.dll" />
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\libjpeg-turbo-native-win.targets" target="build\libjpeg-turbo-native-win.targets" />
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\win-x64\turbojpeg.dll" target="build\win-x64\turbojpeg.dll" />
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\win-x86\turbojpeg.dll" target="build\win-x86\turbojpeg.dll" />
+  </files>
+</package>

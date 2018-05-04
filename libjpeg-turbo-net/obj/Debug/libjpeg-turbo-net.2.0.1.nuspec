@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>libjpeg-turbo-net</id>
+    <version>2.0.1</version>
+    <authors>Terekhin Sergey</authors>
+    <owners>Terekhin Sergey</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/Sergey-Terekhin/libjpeg-turbo-net</projectUrl>
+    <iconUrl>https://a.fsdn.com/allura/p/libjpeg-turbo/icon?1478149362</iconUrl>
+    <description>Wrapper for libjpeg-turbo library</description>
+    <copyright>Copyright © 2018</copyright>
+    <tags>TurboJpeg libjpeg-turbo</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.dll" target="lib\netstandard2.0\libjpeg-turbo-net.dll" />
+    <file src="E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.xml" target="lib\netstandard2.0\libjpeg-turbo-net.xml" />
+  </files>
+</package>

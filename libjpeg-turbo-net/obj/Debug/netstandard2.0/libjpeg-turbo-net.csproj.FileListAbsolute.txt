@@ -1,0 +1,10 @@
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.xml
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.deps.json
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\bin\Debug\netstandard2.0\libjpeg-turbo-net.pdb
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.csprojResolveAssemblyReference.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.csproj.CoreCompileInputs.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.AssemblyInfoInputs.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.AssemblyInfo.cs
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-net\obj\Debug\netstandard2.0\libjpeg-turbo-net.pdb

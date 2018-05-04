@@ -1,0 +1,12 @@
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\libjpeg-turbo-native-win.targets
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\win-x64\turbojpeg.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\win-x86\turbojpeg.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\libjpeg-turbo-native-win.deps.json
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\libjpeg-turbo-native-win.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\bin\Debug\netstandard2.0\libjpeg-turbo-native-win.pdb
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.csprojResolveAssemblyReference.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.csproj.CoreCompileInputs.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.AssemblyInfoInputs.cache
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.AssemblyInfo.cs
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.dll
+E:\Projects\github\libjpeg-turbo-net\libjpeg-turbo-native-win\obj\Debug\netstandard2.0\libjpeg-turbo-native-win.pdb
