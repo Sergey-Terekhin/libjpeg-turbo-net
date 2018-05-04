@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TurboJpegWrapper.Tests
@@ -116,52 +114,8 @@ namespace TurboJpegWrapper.Tests
                 }
             }
         }
+        
 
-
-        [Test, Combinatorial]
-        public async void CompressAsync(
-            [Values
-            (TJSubsamplingOptions.TJSAMP_GRAY,
-                TJSubsamplingOptions.TJSAMP_411,
-                TJSubsamplingOptions.TJSAMP_420,
-                TJSubsamplingOptions.TJSAMP_440,
-                TJSubsamplingOptions.TJSAMP_422,
-                TJSubsamplingOptions.TJSAMP_444)]TJSubsamplingOptions options,
-            [Values(1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)]int quality)
-        {
-            foreach (var bitmap in TestUtils.GetTestImages("*.bmp"))
-            {
-                var data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly,
-                    bitmap.PixelFormat);
-                try
-                {
-                    var stride = data.Stride;
-                    var width = data.Width;
-                    var height = data.Height;
-                    var pixelFormat = TestUtils.ConvertPixelFormat(data.PixelFormat);
-                    
-                    var buf = new byte[stride * height];
-                    Marshal.Copy(data.Scan0, buf, 0, buf.Length);
-                    
-                    Trace.WriteLine($"Options: {options}; Quality: {quality}");
-                    CancellationTokenSource cancellation = new CancellationTokenSource();
-
-                    await _compressor.CompressAsync(data.Scan0, stride, width, height, pixelFormat, options, quality, TJFlags.NONE,
-                        async (ptr, size, state, token) =>
-                        {
-                            await Task.Delay(10, token);
-
-                            Assert.IsTrue(ptr != IntPtr.Zero, "ptr != IntPtr.Zero");
-                            Assert.IsTrue(size > 0, "size > 0");
-                            Assert.IsNull(state, "state != null");
-                        }, null, cancellation.Token);
-                }
-                finally
-                {
-                    bitmap.UnlockBits(data);
-                    bitmap.Dispose();
-                }
-            }
-        }
+        
     }
 }
