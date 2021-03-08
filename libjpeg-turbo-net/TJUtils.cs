@@ -15,7 +15,7 @@ namespace TurboJpegWrapper
             throw new TJException(error);
         }
 
-        
+
 
         /// <summary>
         /// Converts array of managed structures to the unmanaged pointer
@@ -26,7 +26,7 @@ namespace TurboJpegWrapper
         public static IntPtr StructArrayToIntPtr<T>(T[] structArray)
         {
             var structSize =
-#if NET47
+#if NET47 || NET40
                 Marshal.SizeOf(typeof(T));
 #elif NETSTANDARD2_0
                 Marshal.SizeOf<T>();

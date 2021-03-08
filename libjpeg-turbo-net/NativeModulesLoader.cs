@@ -104,7 +104,13 @@ namespace TurboJpegWrapper
                 return LoadUnmanagedModules(NativePath, unmanagedModules, logger);
             }
 
+#if NET40
+            var location = AppDomain.CurrentDomain.BaseDirectory;
+#else
             var location = AppContext.BaseDirectory;
+#endif
+
+
 
             if (!Directory.Exists(location))
                 return false;

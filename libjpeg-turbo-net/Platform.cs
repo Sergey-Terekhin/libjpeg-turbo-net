@@ -7,12 +7,16 @@ using System.Runtime.InteropServices;
 namespace TurboJpegWrapper
 {
     /// <summary>
-    /// Provide information for the platform which is using. 
+    /// Provide information for the platform which is using.
     /// </summary>
     internal static class Platform
     {
         static Platform()
         {
+#if NET47 || NET40
+            OperationSystem = OS.Windows;
+#endif
+#if NETSTANDARD2_0
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 OperationSystem = OS.MacOS;
@@ -25,13 +29,14 @@ namespace TurboJpegWrapper
             {
                 OperationSystem = OS.Windows;
             }
+#endif
         }
 
         /// <summary>
         /// Get the type of the current operating system
         /// </summary>
         public static OS OperationSystem { get; }
-        
+
 
         /// <summary>
         /// Returns name of executing platform
