@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.218
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "libjpeg-turbo-net", "libjpeg-turbo-net\libjpeg-turbo-net.csproj", "{E9D3144D-A269-4DB7-84B5-8F1097C90600}"
 EndProject
@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D5D834DE
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "libjpeg-turbo-native-win", "libjpeg-turbo-native-win\libjpeg-turbo-native-win.csproj", "{2764D577-1C5D-477E-A4FF-E6AA697D6A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboJpegWrapper.Net40.PerformanceTests", "TurboJpegWrapper.Net40.PerformanceTests\TurboJpegWrapper.Net40.PerformanceTests.csproj", "{4E7B6125-CFC5-4641-8856-0D37E99F05B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,18 @@ Global
 		{2764D577-1C5D-477E-A4FF-E6AA697D6A83}.Release|x64.Build.0 = Release|Any CPU
 		{2764D577-1C5D-477E-A4FF-E6AA697D6A83}.Release|x86.ActiveCfg = Release|Any CPU
 		{2764D577-1C5D-477E-A4FF-E6AA697D6A83}.Release|x86.Build.0 = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|x64.Build.0 = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E7B6125-CFC5-4641-8856-0D37E99F05B0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

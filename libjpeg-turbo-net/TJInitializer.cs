@@ -21,7 +21,7 @@ namespace TurboJpegWrapper
                 if (!Directory.Exists(dllPath))
                 {
                     var rootPath =
-#if NET47
+#if NET47 || NET40
                 Path.GetDirectoryName(typeof(TJUtils).Assembly.Location);
 #elif NETSTANDARD2_0
                         AppContext.BaseDirectory;
